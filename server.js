@@ -9,11 +9,11 @@ const fs = require("fs");
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-const controller = require(__dirname +"/controllers/controller")
-const cors = require('cors')
+const controller = require(__dirname +"/controllers/controller");
+const cors = require('cors');
 
 //全てのオリジンからアクセスが可能
-app.use(cors())
+app.use(cors());
 
 
 app.set("view engine", "ejs");
@@ -58,10 +58,10 @@ db.serialize(() => {
   }
 });
 
-// http://expressjs.com/en/starter/basic-routing.html
-app.get("/", (request, response) => {
-  response.sendFile(`${__dirname}/views/index.html`);
-});
+
+//メイン画面の表示
+app.use(express.static("public"));
+app.get("/", controller.cesiumInitialControl);
 
 // endpoint to get all the dreams in the database
 app.get("/getDreams", (request, response) => {
