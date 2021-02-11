@@ -9,6 +9,19 @@ const fs = require("fs");
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
+const controller = require(__dirname +"/controllers/controller")
+const cors = require('cors')
+
+//全てのオリジンからアクセスが可能
+app.use(cors())
+
+
+app.set("view engine", "ejs");
+
+const layouts = require("express-ejs-layouts")
+app.use(layouts)
+
+
 // we've started you off with Express,
 // but feel free to use whatever libs or frameworks you'd like through `package.json`.
 
